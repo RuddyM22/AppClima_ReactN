@@ -4,13 +4,13 @@ import axios from "axios";
 
 const ClimaScreen = () => {
     const [climaData, setClimaData] = useState(null);
-    const countries = ['Guatemala', 'Belize', 'Salvador', 'Honduras', 'Nicaragua', 'Costa Rica', 'Panama'];
+    const countries = ['Guatemala', 'Belize', 'El Salvador', 'Honduras', 'Nicaragua', 'Costa Rica', 'Panama'];
 
     useEffect(() => {
         const fetchClimaData = async () => {
             try {
                 const responsePromises = countries.map(country =>
-                    axios.get('https://api.weatherapi.com/v1/current.json?key=ba537c85609047c7bfd52703233006&q=${country}&lang=es')    
+                    axios.get(`https://api.weatherapi.com/v1/current.json?key=ba537c85609047c7bfd52703233006&q=${country}&lang=es`)    
                 );
                 const responses = await Promise.all(responsePromises);
                 const climaDataArray = responses.map(response => response.data);
