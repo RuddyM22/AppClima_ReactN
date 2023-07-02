@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import axios from "axios";
 
 const ClimaScreen = () => {
@@ -31,20 +31,33 @@ const ClimaScreen = () => {
             </View>
         )
     }
-
+    
     return (
         <View>
             {climaData.map((clima, index) => (
-                <View key={index}>
-                    <Text>Ubicación: {clima.location.name}, {clima.location.region}, {clima.location.country}</Text>
-                    <Text>Temperatura: {clima.current.temp_c}°C</Text>
-                    <Text>Condición: {clima.current.condition.text}</Text>
-                    <Text>------------------------------------</Text>
+                <View key={index} style={styles.newsItem}>
+                    <Text style={styles.text}>Ubicación: {clima.location.name}, {clima.location.region}, {clima.location.country}</Text>
+                    <Text style={styles.text}>Temperatura: {clima.current.temp_c}°C</Text>
+                    <Text style={styles.text}>Condición: {clima.current.condition.text}</Text>
+                    <Text style={styles.section}>-----------------------------------------------------------</Text>
                 </View>
             )
             )}
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 16,
+    },
+    newsItem: {
+        marginBottom: 20,
+    },
+    section: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+});
 
 export default ClimaScreen;
