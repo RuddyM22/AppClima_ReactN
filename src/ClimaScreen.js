@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import axios from "axios";
 
 const ClimaScreen = () => {
@@ -33,17 +33,18 @@ const ClimaScreen = () => {
     }
     
     return (
-        <View>
+        <ScrollView>
             {climaData.map((clima, index) => (
                 <View key={index} style={styles.newsItem}>
                     <Text style={styles.text}>Ubicación: {clima.location.name}, {clima.location.region}, {clima.location.country}</Text>
                     <Text style={styles.text}>Temperatura: {clima.current.temp_c}°C</Text>
                     <Text style={styles.text}>Condición: {clima.current.condition.text}</Text>
-                    <Text style={styles.section}>-----------------------------------------------------------</Text>
+                    <Text style={styles.text}>Viento: {clima.current.wind_kph} km/h</Text>
+                    <Text style={styles.text}>Humedad: {clima.current.humidity} %</Text>
+                    <Text style={styles.section}>-----------------------------------------------------</Text>
                 </View>
-            )
-            )}
-        </View>
+            ))}
+        </ScrollView>
     );
 };
 
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     section: {
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
     },
 });
